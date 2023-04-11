@@ -1,0 +1,51 @@
+* Introduction
+
+Fairlie asked for some help replicating some plots for
+
+[[./panel-to-replicate.png]]
+
+Here’s the information I need for our data as well as from the GTEX data:
+
+    - Cart for ENCODE data: https://www.encodeproject.org/carts/829d339c-913c-4773-8001-80130796a367/
+    - Link to gtex paper: https://www.nature.com/articles/s41586-022-05035-y
+    - Link to gtex data: https://gtexportal.org/home/datasets
+
+    Extended data figure 1A/B: 
+
+    get # raw reads, # aligned reads for each library
+
+    raw reads = fastqs
+    aligned reads = unfiltered alignments
+
+    get length of raw reads, aligned reads
+
+    raw reads = fastqs
+    aligned reads = unfiltered alignments
+    report in read name / id : read length table
+
+    Extended data figure 1C:
+
+    get read lengths for each read for the gtex paper (this will require some dbgap stuff)
+
+* First step was to download and stage all the data from the cart
+
+[[./stage-data-for-paper.html]]
+
+* Second step was to count reads
+
+[[./count-replicates.html]]
+
+
+Datasets are named by ENCODE experiment ID and the combined biological
+and technical replicate number. (which is really the contents of the
+technical replicate field from the ENCODE experiment object)
+
+The file [[./all_read_lengths.tsv.gz]] contains all the read lengths for
+each and every read from each dataset, with one line per dataset
+
+The file [[./all_summary_counts.tsv]] contains the summary statistics for
+the read counts by dataset
+
+Hopefully that's good enough the loop that counts each file one at a
+time takes about 9 hours to read through all the files. (Maybe could
+speed up if I added some parallelization)
